@@ -1,0 +1,16 @@
+{
+  "name": "@infor/services",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "tsconfig": "*",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
+    "react-redux": "^8.0.5",
+    "redux-persist": "^6.0.0",
+    "zod": "^3.21.4"
+  }
+}
