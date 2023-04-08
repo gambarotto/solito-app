@@ -4,6 +4,7 @@ import { HomeScreen } from '../../features/home/screen'
 import { UserDetailScreen } from '../../features/user/detail-screen'
 import SignIn from '../../features/signIn'
 import SignUp from '../../features/signUp'
+import Todo from '../../features/todo'
 
 const Stack = createNativeStackNavigator<{
   home: undefined
@@ -12,15 +13,18 @@ const Stack = createNativeStackNavigator<{
   }
   signIn: undefined
   signUp: undefined
+  todo: undefined
 }>()
 
 export function NativeNavigation() {
   return (
     <Stack.Navigator
+      initialRouteName='home'
       screenOptions={{
         headerShown: false,
       }}
     >
+      <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen
         name="signIn"
         component={SignIn}
@@ -31,7 +35,7 @@ export function NativeNavigation() {
         component={SignUp}
         options={{ title: 'Sign Up' }}
       />
-      <Stack.Screen name="home" component={HomeScreen} />
+      <Stack.Screen name="todo" component={Todo} options={{ title: 'To-do' }} />
       <Stack.Screen name="user-detail" component={UserDetailScreen} />
     </Stack.Navigator>
   )

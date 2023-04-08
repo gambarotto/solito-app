@@ -20,6 +20,7 @@ export function NavigationProvider({
               'user-detail': 'user/:id',
               signIn: 'signIn',
               signUp: 'signUp',
+              todo: 'todo',
             },
           },
         }),

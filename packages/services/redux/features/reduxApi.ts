@@ -7,6 +7,7 @@ import { tasksEndpoints } from "./tasks/endpoints";
 import { userEndpoints } from "./user/endpoints";
 import { KEY_LOCALSTORAGE_TOKEN } from "./user/userSlice";
 
+const tempToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODA4OTc1MjYsImV4cCI6MTY4MzQ4OTUyNiwic3ViIjoiZDA4YzhkMGQtYWUwZS00MTAyLTkyZTQtOTU5N2Q1ZjAzZmI5In0.ZLafU6mgQUxvtApMzUwYOv-_lLL15ADAmzykXSX2Rs8'
 export const apiSlice = createApi({
   reducerPath: "apiSlice",
   baseQuery: fetchBaseQuery({
@@ -24,6 +25,7 @@ export const apiSlice = createApi({
       if(!tokenStorage) return headers
 
       const token = JSON.parse(tokenStorage)
+      //headers.set("authorization", `Bearer ${tempToken}`);
       headers.set("authorization", `Bearer ${token}`);
       return headers;
     }

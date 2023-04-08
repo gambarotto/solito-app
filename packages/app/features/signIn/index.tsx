@@ -4,7 +4,7 @@ import { Link as SolitoLink } from 'solito/link'
 import { ButtonBase, InputBase } from "../../components";
 import { reduxApi, signInValidation } from "@infor/services";
 import { useRouter } from "solito/router";
-import { KEY_LOCALSTORAGE_TOKEN, KEY_LOCALSTORAGE_USER, UserStateProps, getUserLocalStorage } from "@infor/services/redux/features/user/userSlice";
+import { KEY_LOCALSTORAGE_TOKEN, KEY_LOCALSTORAGE_USER, getUserLocalStorage } from "@infor/services/redux/features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useAppDispatch } from "../../redux/store";
@@ -15,26 +15,9 @@ export default function SignIn(){
   const [password, setPassword] = useState('')
   const router = useRouter()
   const state = useSelector(state => state)
-  const [createSession, result] = reduxApi.user.useCreateSessionMutation()
+  const [createSession] = reduxApi.user.useCreateSessionMutation()
 
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    async function save(){
-      await AsyncStorage.setItem(
-        KEY_LOCALSTORAGE_USER,
-        JSON.stringify({
-          user: { id: 'id-criado', name: 'teste', email: 'hh@gg.com' },
-          token: 'ujyhjkll.',
-          isLoading: false,
-        })
-      )
-      await AsyncStorage.setItem(KEY_LOCALSTORAGE_TOKEN, JSON.stringify({token: 'oi'}))
-    }
-    //save();
-    dispatch<any>(getUserLocalStorage())
-    //dispatch(saveUser({user:{id:'', password:'',email:''},token:'', isLoading:false}))
-  }, []);
 
   const handleSignIn = useCallback(async () => {
     const user = signInValidation({ email, password })
@@ -42,12 +25,9 @@ export default function SignIn(){
     console.log(session)
 
     dispatch(reduxApi.user.signIn(session))
-    //router.push('/todo')
+    router.push('/todo')
   }, [createSession, dispatch, email, password, router])
 
-  if (state.user.isLoading) {
-    return <Text>carregando...</Text>
-  }
   return (
     <Box flex="1" safeAreaTop>
       <VStack
@@ -95,7 +75,6 @@ export default function SignIn(){
             Ainda não tem uma conta? clique aqui
           </Text>
         </SolitoLink>
-        <Text>{state.user && 'true'}</Text>
       </VStack>
     </Box>
   )

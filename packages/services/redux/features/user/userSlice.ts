@@ -47,13 +47,13 @@ export const getUserLocalStorage = createAsyncThunk(
       // WEB
       userStorage = window.localStorage.getItem(KEY_LOCALSTORAGE_USER);
       tokenStorage = window.localStorage.getItem(KEY_LOCALSTORAGE_TOKEN);
-      console.log('WEB', userStorage, tokenStorage);
+      console.log('WEB');
     } else {
       // REACT NATIVE
       userStorage = await AsyncStorage.getItem(KEY_LOCALSTORAGE_USER);
       tokenStorage = await AsyncStorage.getItem(KEY_LOCALSTORAGE_TOKEN);
 
-      console.log('NATIVE' ,userStorage, tokenStorage);
+      console.log('NATIVE');
       
     }
     if (!userStorage || !tokenStorage) {
@@ -108,7 +108,7 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addCase(getUserLocalStorage.fulfilled, (state, data) => {
-      console.log('fulfilled', data);
+      console.log('fulfilled');
       
       state.user = data.payload?.user as User;
       state.token = data.payload?.token as string;

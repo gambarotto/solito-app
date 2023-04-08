@@ -20,7 +20,6 @@ export default function SignUp() {
       router.push('/signIn')
     } catch (error) {
       console.log(error);
-      
     }
   }, [createUser, email, name, password, router])
 
@@ -35,7 +34,6 @@ export default function SignUp() {
         alignItems="center"
       >
         <Heading
-          backgroundColor="amber.500"
           w="300px"
           marginBottom={2}
           size="md"

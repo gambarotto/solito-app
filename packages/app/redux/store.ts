@@ -5,7 +5,7 @@ import { reduxApi } from '@infor/services';
 
 export const reduxStore = configureStore(reduxApi.configurationStore)
 
-export const persistor = persistStore(reduxStore)
+//export const persistor = persistStore(reduxStore)
 
 export type RootState = ReturnType<typeof reduxStore.getState>
 export type AppDispatch = typeof reduxStore.dispatch
